@@ -1,9 +1,9 @@
 from django.db import models
 
-class Bookings(models.Model):
+class Booking(models.Model):
 
     #def __str__(self):
-    #    return self.question_text
+    #   return self.email
 
     email = models.EmailField()
     title = models.CharField(max_length=100)
