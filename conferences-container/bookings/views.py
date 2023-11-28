@@ -1,12 +1,26 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render, get_object_or_404
+
 from .models import Booking
+from .forms import NewForm
+
 
 def index(request):
     return HttpResponse("Hello world!")
 
 def new(request):
+
+    if request.method == "POST":
+        form = NewForm(request.POST)  # populates the new form with data from request (binding data to form)
+        if form.is_valid():
+            return HttpResponseRedirect("/")  # test if it goes to the index
+
+    else:
+        form = NewForm()
+
+    return render(request, "new.html", {"form": form})
+
     template = loader.get_template("bookings/new.html")
     return HttpResponse(template.render({}, request))  # No context required
 
