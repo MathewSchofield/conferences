@@ -21,8 +21,8 @@ def new(request):
 
     return render(request, "new.html", {"form": form})
 
-    template = loader.get_template("bookings/new.html")
-    return HttpResponse(template.render({}, request))  # No context required
+    #template = loader.get_template("bookings/new.html")
+    #return HttpResponse(template.render({}, request))  # No context required
 
 def add_church(request, booking_id):
 
