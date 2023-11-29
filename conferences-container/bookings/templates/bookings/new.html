@@ -3,8 +3,19 @@
 {% comment %} <form action="{% url 'booking:add_church' booking.id %}" method="post"> {% endcomment %}
 
 
-<form  method="post">
+<title>Conference Booking</title>
+
+<h1>Conference Booking</h1>
+<br>
+<form method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">
+    
+    <label for="sur name">Name:</label>
+    <input type="text" id="sur name" name="surname">
 </form>
+
+<br><br>
+<p>Didn't mean to come here? Click the link below to return to the main site.</p>
+<a href="https://www.thegoodbook.co.uk/" title="The Good Book Company">Main Site</a>
