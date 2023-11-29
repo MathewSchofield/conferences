@@ -1,6 +1,6 @@
-from django.http import HttpResponse, Http404, HttpResponseRedirect
-from django.template import loader
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 
 from .models import Booking
 from .forms import BookingForm
@@ -13,21 +13,21 @@ def index(request):
 def new(request):
 
     if request.method == "POST":
-        form = BookingForm(request.POST)  # populates the new form with data from request (binding data to form)
+        form = BookingForm(request.POST)
         if form.is_valid():
-            return HttpResponseRedirect("/")  # test if it goes to the index. what does this do (nothing if url defined in template?)?
+            saved_form = form.save()
+            return HttpResponseRedirect(reverse("add_church", args=[saved_form.id]))
 
     else:
         form = BookingForm()
 
     return render(request, "new.html", {"form": form})
 
-    #template = loader.get_template("bookings/new.html")
-    #return HttpResponse(template.render({}, request))  # No context required
 
 def add_church(request, booking_id):
 
     booking = get_object_or_404(Booking, pk=booking_id)
+    
     return render(request, "bookings/add_church.html", {"booking": booking})
 
 
