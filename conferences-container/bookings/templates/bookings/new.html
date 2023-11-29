@@ -1,8 +1,9 @@
 
 
+{% comment %} <form action="{% url 'booking:add_church' booking.id %}" method="post"> {% endcomment %}
 
 
-<form action="/" method="post">
+<form  method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">
