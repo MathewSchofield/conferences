@@ -5,7 +5,10 @@
 <form method="post">
 {% csrf_token %}
 {{ form }}
+<label for="home_church">Home church:</label>
+<input type="text" id="home_church" name="home_church">
 
+<input type="submit" value="Next">
 </form>
 
 <p>Add church.</p>

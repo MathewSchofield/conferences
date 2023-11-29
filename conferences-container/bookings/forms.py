@@ -8,7 +8,10 @@ class BookingForm(ModelForm):
         fields = ["first_name"]
 
 
-
+class BookingForm2(ModelForm):
+    class Meta:
+        model = Booking
+        fields=["home_church"]
 
 
 #from django import forms

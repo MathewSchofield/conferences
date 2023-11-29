@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
 from .models import Booking
-from .forms import BookingForm
+from .forms import BookingForm, BookingForm2
 
 
 def index(request):
@@ -24,11 +24,19 @@ def new(request):
     return render(request, "new.html", {"form": form})
 
 
+
+
 def add_church(request, booking_id):
 
+    #if request.method == "Post":
     booking = get_object_or_404(Booking, pk=booking_id)
-    
-    return render(request, "bookings/add_church.html", {"booking": booking})
+    form = BookingForm2(instance=booking)
+    if form.is_valid():
+        saved_form = form.save()
+        return HttpResponseRedirect(reverse("confirm", args=[saved_form.id]))
+
+
+    return render(request, "bookings/add_church.html", {"booking": booking_id})
 
 
 
