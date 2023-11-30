@@ -1,10 +1,12 @@
 <title>Your Booking</title>
 
 <ul>
+      <p>Title: {{ booking.title }}</p>
       <p>First name: {{ booking.first_name }}</p>
+      <p>Last name: {{ booking.last_name }}</p>
+      <p>Email: {{ booking.email }}</p>
       <p>Home church: {{ booking.home_church }}</p>
-    
-  </ul>
+</ul>
 
   <form method="post">
     {% csrf_token %}

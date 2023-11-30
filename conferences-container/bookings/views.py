@@ -7,6 +7,7 @@ from .forms import BookingForm, BookingForm2
 
 
 def index(request):
+    
     return HttpResponse("Hello world!")
 
 
@@ -55,4 +56,5 @@ def complete(request, booking_id):
     booking = get_object_or_404(Booking, pk=booking_id)
     booking.completed = True
     booking.save()
+
     return HttpResponse("Thanks for booking, %s!" % booking.first_name)
