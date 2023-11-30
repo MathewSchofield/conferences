@@ -26,34 +26,23 @@ def new(request):
 
 def add_church(request, booking_id):
 
+    booking = get_object_or_404(Booking, pk=booking_id)
     if request.method == "GET":
-        booking = get_object_or_404(Booking, pk=booking_id)
         form = BookingForm2(instance=booking)
 
     elif request.method == "POST":
-        form = BookingForm2(request.POST)
+        form = BookingForm2(request.POST, instance=booking)
         if form.is_valid():
             saved_form = form.save()
             return HttpResponseRedirect(reverse("confirm", args=[saved_form.id]))
 
-
-    # if form.is_valid():
-    #     saved_form = form.save()
-    #     return HttpResponseRedirect(reverse("confirm", args=[saved_form.id]))
-
     return render(request, "bookings/add_church.html", {"form": form})
-
-
-
-    #return HttpResponse("step 2. for adding church to %s." % booking_id)
-
-
-
 
 
 def confirm(request, booking_id):
     booking = Booking.objects.get(pk=booking_id)
     return HttpResponse("show all data + confirms. completion flag set to true %s" % booking.first_name)
+
 
 def complete(request, booking_id):
     return HttpResponse("Completion")
