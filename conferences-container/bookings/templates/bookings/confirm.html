@@ -1,0 +1,12 @@
+<title>Your Booking</title>
+
+<ul>
+      <p>First name: {{ booking.first_name }}</p>
+      <p>Home church: {{ booking.home_church }}</p>
+    
+  </ul>
+
+  <form method="post">
+    {% csrf_token %}
+  <input type="submit" value="Confirm">
+  </form>
