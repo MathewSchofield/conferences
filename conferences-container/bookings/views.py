@@ -44,11 +44,15 @@ def confirm(request, booking_id):
 
     booking = get_object_or_404(Booking, pk=booking_id)
 
+    if request.method == "POST":
+        return HttpResponseRedirect(reverse("complete", args=[booking_id]))
 
-    #booking = Booking.objects.get(pk=booking_id)
-    #return HttpResponse("show all data + confirms. completion flag set to true %s" % booking.first_name)
     return render(request, "confirm.html", {"booking": booking})
 
 
 def complete(request, booking_id):
-    return HttpResponse("Completion")
+
+    booking = get_object_or_404(Booking, pk=booking_id)
+    booking.completed = True
+    booking.save()
+    return HttpResponse("Thanks for booking, %s!" % booking.first_name)
