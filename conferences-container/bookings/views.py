@@ -24,19 +24,24 @@ def new(request):
     return render(request, "new.html", {"form": form})
 
 
-
-
 def add_church(request, booking_id):
 
-    #if request.method == "Post":
-    booking = get_object_or_404(Booking, pk=booking_id)
-    form = BookingForm2(instance=booking)
-    if form.is_valid():
-        saved_form = form.save()
-        return HttpResponseRedirect(reverse("confirm", args=[saved_form.id]))
+    if request.method == "GET":
+        booking = get_object_or_404(Booking, pk=booking_id)
+        form = BookingForm2(instance=booking)
+
+    elif request.method == "POST":
+        form = BookingForm2(request.POST)
+        if form.is_valid():
+            saved_form = form.save()
+            return HttpResponseRedirect(reverse("confirm", args=[saved_form.id]))
 
 
-    return render(request, "bookings/add_church.html", {"booking": booking_id})
+    # if form.is_valid():
+    #     saved_form = form.save()
+    #     return HttpResponseRedirect(reverse("confirm", args=[saved_form.id]))
+
+    return render(request, "bookings/add_church.html", {"form": form})
 
 
 

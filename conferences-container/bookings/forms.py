@@ -4,7 +4,6 @@ from .models import Booking
 class BookingForm(ModelForm):
     class Meta:
         model = Booking
-        #fields = ["title", "first_name", "last_name", "email", "home_church", "completed"]
         fields = ["first_name"]
 
 
@@ -12,6 +11,9 @@ class BookingForm2(ModelForm):
     class Meta:
         model = Booking
         fields=["home_church"]
+
+
+        #fields = ["title", "first_name", "last_name", "email", "home_church", "completed"]
 
 
 #from django import forms
