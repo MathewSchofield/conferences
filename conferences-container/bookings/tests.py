@@ -1,11 +1,35 @@
 from django.test import TestCase
+from django.urls import reverse
+
+from .models import Booking
+
+BOOKING_ID = 5
+
+def create_booking():
+    return Booking.objects.create(id=BOOKING_ID)
 
 
-# MAKE THE NEW FORM LOOK NICER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+class BookingNewViewTests(TestCase):
+    def test_new(self):
+        """ Test the new View. Does not require any parameters. """
+        response = self.client.get(reverse("new"))
+        self.assertEqual(response.status_code, 200)
 
 
-# Create your tests here.
-# test an invalid email address
+class BookingAddChurchViewTests(TestCase):
+    """ Test the add_church View. Requires a valid Booking id. """
+
+    def test_invalid_booking_id(self):
+        """ Test the add_church view with a booking id that does not exist in the database. """
+        response = self.client.get(reverse("add_church", args=[111]))
+        self.assertEqual(response.status_code, 404)
+
+
+    def test_valid_booking_id(self):
+        booking = create_booking()
+        response = self.client.get(reverse("add_church", args=[BOOKING_ID]))
+        self.assertEqual(response.status_code, 200)
+
 
 # test blank fields
 

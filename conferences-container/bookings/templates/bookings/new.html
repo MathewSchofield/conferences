@@ -8,7 +8,8 @@
     {% comment %} {{ form }} {% endcomment %}
 
     <div class='form-group'>
-        {{ form.title}}
+        {% comment %} {{ form.title|crispy }} {% endcomment %}
+        {{ form.title }}
     </div>
     <br>
     <div class='form-group'>
