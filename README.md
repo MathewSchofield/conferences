@@ -1,2 +1,2 @@
 # conferences
-Django events system to store conference bookings
+Django events system to store conference bookings.

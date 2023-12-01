@@ -4,8 +4,25 @@
 <br>
 <form method="post">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Next">
+    {% comment %} {{ form }} {% endcomment %}
+
+    <div class='form-group'>
+        {{ form.title }}
+    </div>
+    <br>
+    <div class='form-group'>
+        {{ form.first_name }}
+    </div>
+    <br>
+    <div class='form-group'>
+        {{ form.last_name }}
+    </div>
+    <br>
+    <div class='form-group'>
+        {{ form.email }}
+    </div>
+    <br>
+    <input class="next-btn" type="submit" value="Next">
 </form>
 
 <br><br>
