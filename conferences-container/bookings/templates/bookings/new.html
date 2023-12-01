@@ -2,12 +2,13 @@
 
 <h1>Conference Booking Sign-up - Your Details</h1>
 <br>
+{% load crispy_forms_tags %}
 <form method="post">
     {% csrf_token %}
     {% comment %} {{ form }} {% endcomment %}
 
     <div class='form-group'>
-        {{ form.title }}
+        {{ form.title}}
     </div>
     <br>
     <div class='form-group'>
