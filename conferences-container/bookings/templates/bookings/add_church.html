@@ -4,6 +4,10 @@
 <br>
 <form method="post">
 {% csrf_token %}
-{{ form }}
+
+<div class = "form-group">
+    {{ form.home_church }}
+</div>
+<br>
 <input type="submit" value="Next">
 </form>

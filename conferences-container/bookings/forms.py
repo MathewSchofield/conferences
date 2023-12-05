@@ -32,12 +32,15 @@ class BookingForm(ModelForm):
         }
 
 
-
-    #         name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Name', 'style': 'width: 300px;'}))
-    # email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder' :'Email', 'style': 'width: 300px;'}))
-
-
 class BookingForm2(ModelForm):
     class Meta:
         model = Booking
         fields=["home_church"]
+        widgets = {
+            'home_church': TextInput(attrs={
+                'class': 'form-control',
+                'style': 'max-width: 300px;',
+                'placeholder': 'Home Church',
+                'required': True
+            }),
+        }
